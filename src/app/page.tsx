@@ -32,8 +32,8 @@ export default function Home() {
     <div className="flex cursor-default flex-row h-screen">
       {/* Left Side */}
       <div className=" w-full lg:w-2/3 xl:w-1/2 h-full p-8">
-        <div className="mx-auto w-5/6 md:w-2/3">
-          <div className="w-full flex items-center mt-28 justify-center text-5xl md:text-7xl mx-auto align-middle font-[var(--font-merriweather)]">WELCOME BACK</div>
+        <div className="mx-auto w-full sm:w-5/6 md:w-2/3">
+          <div className="w-full flex items-center mt-28 justify-center text-5xl md:text-7xl mx-auto align-middle font-[var(--font-merriweather)]">Say Cheese!!!!</div>
           <div className="w-full flex items-center mt-6 justify-center text-xl md:text-3xl text-gray-700">Hello! Wanna try our delicious pizzas?</div>
           <div className="w-full flex flex-col gap-2 md:gap-3 mt-7 md:mt-12">
             <label className="text-xl md:text-2xl">Email</label>
@@ -65,8 +65,8 @@ export default function Home() {
               )}
             </div>
           </div>
-          <div className="w-full flex justify-between items-center ml-4 mt-8 px-3">
-            <label className="flex items-center gap-2 text-sm md:text-lg cursor-pointer">
+          <div className="w-full flex justify-between items-center ml-1 mt-8 px-3 pr-0">
+            <label className="flex items-center gap-2 ml-1 text-sm md:text-lg cursor-pointer">
               <input
                 type="checkbox"
                 checked={rememberMe}
@@ -79,7 +79,7 @@ export default function Home() {
             </label>
 
             <div>
-              <a href="#" className=" hover:text-orange-500 mr-3 text-sm md:text-lg">
+              <a href="#" className=" hover:text-orange-500 mr-1 text-sm md:text-lg">
                 Forgot Password?
               </a>
             </div>
