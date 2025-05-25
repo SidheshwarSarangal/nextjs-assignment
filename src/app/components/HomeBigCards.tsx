@@ -8,31 +8,31 @@ import 'keen-slider/keen-slider.min.css';
 
 const slides = [
     {
-        img: '/home1.jpg',
+        img: '/payment2.png',
         heading: 'Slide 1',
         text: 'Mountains at dawn',
         text2: 'Experience the serene beauty of morning mountains.',
     },
     {
-        img: '/home2.jpg',
+        img: '/coke.png',
         heading: 'Slide 2',
         text: 'Tranquil lake view',
         text2: 'Calm reflections across a peaceful lake.',
     },
     {
-        img: '/home3.jpg',
+        img: '/delivery.png',
         heading: 'Slide 3',
         text: 'Snowy peaks',
         text2: 'Majestic snowy mountains touching the skies.',
     },
     {
-        img: '/home4.jpg',
+        img: '/pizzapng.png',
         heading: 'Slide 4',
         text: 'Golden hour valley',
         text2: 'A valley painted with warm hues at sunset.',
     },
     {
-        img: '/home5.jpg',
+        img: '/sundaypng.png',
         heading: 'Slide 5',
         text: 'Evening serenity',
         text2: 'Quiet landscapes to end the day peacefully.',
@@ -90,11 +90,11 @@ export default function HomeBigCards() {
                             </div>
 
                             {/* Right Image (cropped on the right side) */}
-                            <div className="gap-x-5 w-1/2 ">
+                            <div className="gap-x-5 w-1/3 md:w-1/2 ">
                                 <img
-                                    src="/pizzapng.png"
+                                    src={slide.img}
                                     alt="Pizza"
-                                    className="absolute right-[-40%] top-0 h-full object-cover"
+                                    className="absolute  md:right-[-25%] top-0 h-full object-cover"
                                 />
                             </div>
                         </div>
