@@ -6,6 +6,8 @@ import LeftSidebar from "../components/LeftSideBar";
 import { useEffect, useState } from "react";
 import { Search } from 'lucide-react';
 import HomeBigCards from "../components/HomeBigCards";
+import MenuBar from "../components/MenuBar";
+import FoodCard from "../components/FoodCard";
 
 
 
@@ -37,7 +39,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full cursor-default">
       <LeftSidebar />
       <div className="flex flex-row h-screen">
         <div className="w-full xl:w-4/5 p-14 ">
@@ -52,7 +54,7 @@ export default function Home() {
                 </div>
               </div>
               <div
-                className={`flex items-center mt-8 border-2 lg:w-80 lg:h-14 w-48 h-10 rounded-full px-4 py-2 transition-colors duration-300
+                className={`flex items-center mt-5 md:mt-8 border-2 lg:w-80 lg:h-14 w-48 h-10 rounded-full px-4 py-2 transition-colors duration-300
         ${focused ? 'border-orange-500' : 'border-gray-300'}`}
               >
                 <Search className={`w-10 h-10 mr-2 sm:w-8 sm:h-8 transition-colors duration-300 ${focused ? 'text-orange-500' : 'text-gray-500'}`} />
@@ -69,14 +71,37 @@ export default function Home() {
               <HomeBigCards />
             </div>
             <div>
-
+              <MenuBar />
             </div>
-            <div>
+            <div className="flex flex-row mt-7 align-baseline">
+              <Image src="/rank.svg" alt="Best" height={50} width={50} />
+              <div className="font-bold ml-1 text-4xl pt-3 text-orange-400">
+                Bestseller
+              </div>
+            </div>
+            <div >
+              <div className="flex gap-10 flex-col md:flex-row mt-5 pb-16 ">
+                <FoodCard
+                  image="/Farmhouse.jpg"
+                  heading="Gourmet"
+                  veg={true}
+                  price={180}
+                />
+                <FoodCard
+                  image="/BBQ.jpg"
+                  heading="Pepper Barbeque"
+                  veg={false}
+                  price={220}
+                />
+
+              </div>
 
             </div>
           </div>
         </div>
-        <div className="relative h-full overflow-hidden w-0 xl:w-1/5">
+
+
+        <div className="fixed right-0 top-0 h-full overflow-hidden w-0 xl:w-1/5">
           {images.map((src, index) => (
             <Image
               key={index}
