@@ -52,7 +52,7 @@ export default function Pizza() {
       <div className="flex w-full flex-row h-screen">
         <div className="w-full xl:w-4/5 p-14 ">
           <div className="w-full pl-14 sm:pl-20 lg:pl-24">
-            <div className="flex w-full flex-col md:flex-row align-top justify-left gap-8">
+            <div className="flex w-full items-center flex-col md:flex-row align-top justify-left gap-8">
               <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center cursor-pointer hover:bg-gray-400 transition">
                 <ArrowLeft className="w-10 h-10 text-white" />
               </div>
