@@ -16,19 +16,31 @@ Click the link below to view the live deployed app:
 
 ### Day 1: Frontend Structure, Layout & Landing Page
 
+- **Important Detail**
+  - All the pages(except orders page) cantainA left and Right section.
+  - The left section is basically the main content and section contains changing images.
+  - Used Google Oauth for signing in and if you try to reach any page if not signed in then it will be redirected to signin page.
+  - There is a screen loading page associated with all the pages as well.
+
 - **Project Setup:**
-  - Created with Next.js using the App Router.
-  - Installed and configured Tailwind CSS for styling.
-  - Configured global styles and Tailwind content paths.
+  - Created with Next.js.
+  - Tailwind was installed along with the setup.
+  - Configured certain global styles such as animate.
+
+- ** Decided How the frontend will look:*
+  - Taken inspiration from certain figma designs.
+  - [Landing Page inspiration](https://www.figma.com/design/5CE9EB3hxkqFxzMp13piMA/Pizza-Shop-Website--Community-?node-id=0-1&t=ISoHmVCeJQIpacIR-0)
 
 - **Layout & Navigation:**
   - Created a global layout with a responsive navbar.
-  - Navbar includes links to Home, Pizzas, Drinks, Cart, and Profile pages.
+  - Navbar includes links to Pizzas, Drinks, Cart, and Profile pages.
 
 - **Landing Page:**
   - Designed promotional content with two main parts:
-    - Left side: Card carousel built with **keen-slider**.
+    - Left side: Card carousel slides built with **keen-slider**.
     - Right side: Animated promo image and text using **framer-motion**.
+    - The framer maotion is visible only for big screens.
+    - It also includes Menu bar and BestSellers
   - Implemented automatic slide transitions every 10 seconds.
 
 ---
@@ -37,25 +49,32 @@ Click the link below to view the live deployed app:
 
 - **Pizzas Page:**
   - Static grid layout displaying pizzas with name, price, and “Add to Cart” button.
-  - Images served from `/public/pizzas/`.
+  - Images served from `/public`.
+  - There is a screen slide effect which pushes the screen below to down on clicking expand.
 
 - **Drinks Page:**
   - Similar grid layout with accordion-style categories (Special, Cold Drinks).
   - Right side features rotating promo carousel with animations.
+  - There is a screen slide effect which pushes the screen below to down on clicking expand.
+  - In the code, the variables are taken similar to the pizza menu page.
+
 
 - **Cart Page:**
   - Shows selected cart items on the left.
+  - On the right side is the bill.
   - Summary and total calculation on the right.
-  - “Remove” button for each item.
+  - There are items in the table.
+  - You can sort them in order of dates
+  - Yau can apply filters of received/baked/dispatched.
 
 - **Profile Page:**
-  - Displays user information (avatar, email).
-  - Shows past orders (static or dynamic).
-  - Shows login prompt if user is not authenticated.
+  - Displays user information (name, address and phone number).
+  - Contains Logout for clearing the authentication and logging out.
 
 - **Sign In / Sign Up Pages:**
   - UI forms for email and password input.
-  - Google Sign-In button included (initially UI only).
+  - Google Sign-In button included (It works actually).
+  - Noramal signin/signup (It is just dummy)
   - Styled with Tailwind CSS for a clean and user-friendly interface.
 
 ---
@@ -124,7 +143,7 @@ Implementing OAuth via NextAuth.js presented the following challenges:
 
 ---
 
-## 📚 Things I Learned
+## 📚 Things I Learned and Improved 
 
 This project was an excellent learning experience in full-stack development using modern web technologies. Below are the key takeaways from the journey:
 
