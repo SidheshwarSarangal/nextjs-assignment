@@ -4,7 +4,7 @@
 import Image from "next/image";
 import LeftSidebar from "../../components/LeftSideBar";
 import { useEffect, useState } from "react";
-import { Search } from 'lucide-react';
+import { Pizza, Search } from 'lucide-react';
 import HomeBigCards from "../../components/HomeBigCards";
 import MenuBar from "../../components/MenuBar";
 import FoodCard from "../../components/FoodCard";
@@ -55,6 +55,33 @@ export default function Drinks() {
 
         return () => clearInterval(interval);
     }, []);
+
+    if (status === "loading") {
+        return (
+          <div className="h-screen w-full flex flex-col justify-center items-center bg-white">
+            <div className="w-48 h-48 mb-6 animate-shake-pulse">
+              <Pizza size={192} className="text-orange-500" />
+    
+            </div>
+            <p className="text-3xl font-bold text-orange-600 typing">Loading...</p>
+    
+            {/* Typing animation only */}
+            <style jsx>{`
+              @keyframes typing {
+                from { width: 0 }
+                to { width: 8ch }
+              }
+      
+              .typing {
+                overflow: hidden;
+                white-space: nowrap;
+                border-right: 3px solid orange;
+                animation: typing 2s steps(8) infinite alternate;
+              }
+            `}</style>
+          </div>
+        );
+      }
 
     return (
         <div className="w-full cursor-default">

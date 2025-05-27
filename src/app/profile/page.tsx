@@ -3,7 +3,7 @@
 import Image from "next/image";
 import LeftSidebar from "../../components/LeftSideBar";
 import { useEffect, useState } from "react";
-import { ArrowLeft, MapPin, Phone, LogOut } from "lucide-react";
+import { ArrowLeft, MapPin, Phone, LogOut, Pizza } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
@@ -46,6 +46,33 @@ export default function Profile() {
         return () => clearInterval(interval);
     }, []);
 
+    if (status === "loading") {
+        return (
+            <div className="h-screen w-full flex flex-col justify-center items-center bg-white">
+                <div className="w-48 h-48 mb-6 animate-shake-pulse">
+                    <Pizza size={192} className="text-orange-500" />
+
+                </div>
+                <p className="text-3xl font-bold text-orange-600 typing">Loading...</p>
+
+                {/* Typing animation only */}
+                <style jsx>{`
+              @keyframes typing {
+                from { width: 0 }
+                to { width: 8ch }
+              }
+      
+              .typing {
+                overflow: hidden;
+                white-space: nowrap;
+                border-right: 3px solid orange;
+                animation: typing 2s steps(8) infinite alternate;
+              }
+            `}</style>
+            </div>
+        );
+    }
+
     return (
         <div className="w-full cursor-default">
             <LeftSidebar />
@@ -63,7 +90,7 @@ export default function Profile() {
                         </div>
 
                         {/* Hi Name */}
-                        <h1 className="text-4xl font-bold text-gray-800 mb-8">Hi Name</h1>
+                        <h1 className="text-4xl font-bold text-gray-800 mb-8">Hi {session?.user?.name}</h1>
 
                         {/* Address Input */}
                         <div className="mb-6">
@@ -71,13 +98,9 @@ export default function Profile() {
                                 <MapPin className="w-5 h-5 mr-2" />
                                 Address
                             </label>
-                            <input
-                                type="text"
-                                placeholder="Enter your address"
-                                value={address}
-                                onChange={(e) => setAddress(e.target.value)}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                            />
+                            <div className="w-full px-4 py-2 my-2 rounded-lg text-gray-800 bg-white shadow">
+                                <p className="text-xl font-semibold">12/22, Mukharjee Nagar, Delhi 9</p>
+                            </div>
                         </div>
 
                         {/* Phone Number Input */}
@@ -86,13 +109,9 @@ export default function Profile() {
                                 <Phone className="w-5 h-5 mr-2" />
                                 Phone Number
                             </label>
-                            <input
-                                type="text"
-                                placeholder="Enter your phone number"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                            />
+                            <div className="w-full px-4 py-2 my-2 rounded-lg text-gray-800 bg-white shadow">
+                                <p className="text-xl font-semibold">+91-9022XXXXXX</p>
+                            </div>
                         </div>
 
                         {/* Logout Button */}

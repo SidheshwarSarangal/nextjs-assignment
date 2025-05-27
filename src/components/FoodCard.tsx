@@ -82,7 +82,7 @@ const FoodCard: React.FC<FoodCardProps> = ({ image, heading, veg, price, text })
             {/* Popup Modal */}
             {showModal && (
                 <div className="fixed w-full inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white w-full md:w-4/5 xl:w-3/5 mx-4 rounded-lg shadow-lg relative p-6">
+                    <div className="bg-white w-full md:w-4/5 xl:w-1/2 mx-4 rounded-lg shadow-lg relative p-6">
                         <button
                             onClick={() => setShowModal(false)}
                             className="absolute top-2 right-4 text-4xl text-gray-500 hover:text-black"
