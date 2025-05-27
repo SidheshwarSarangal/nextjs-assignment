@@ -3,6 +3,7 @@
 import { useKeenSlider } from 'keen-slider/react';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from "next/image";
 
 import 'keen-slider/keen-slider.min.css';
 
@@ -118,7 +119,7 @@ export default function HomeBigCards() {
 
                             {/* Right Side Image */}
                             <div className="ml-auto w-3/5 sm:w-1/2">
-                                <img
+                                <Image
                                     src={slide.img}
                                     alt="Promo"
                                     className="absolute hidden sm:block object-left 2xl:right-[-29%] top-0 h-full object-cover"
@@ -142,7 +143,7 @@ export default function HomeBigCards() {
                         transition={{ duration: 1, ease: 'easeInOut' }}
                         style={{ position: 'relative' }}
                     >
-                        <img
+                        <Image
                             src={slides[currentSlide].img2}
                             alt="Promo"
                             className="w-80 group-hover:animate-shake h-80 mx-auto object-contain mb-4"
