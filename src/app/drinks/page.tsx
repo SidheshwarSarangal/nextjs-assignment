@@ -2,19 +2,22 @@
 "use client";
 
 import Image from "next/image";
-import LeftSidebar from "../components/LeftSideBar";
+import LeftSidebar from "../../components/LeftSideBar";
 import { useEffect, useState } from "react";
 import { Search } from 'lucide-react';
-import HomeBigCards from "../components/HomeBigCards";
-import MenuBar from "../components/MenuBar";
-import FoodCard from "../components/FoodCard";
+import HomeBigCards from "../../components/HomeBigCards";
+import MenuBar from "../../components/MenuBar";
+import FoodCard from "../../components/FoodCard";
 import { ArrowLeft } from 'lucide-react';
-import { vegPizzas } from "../components/vegpizzalist";
-import { nonVegPizzas } from "../components/nonvegpizzalist";
+import { vegPizzas } from "../../components/vegpizzalist";
+import { nonVegPizzas } from "../../components/nonvegpizzalist";
 import { ChevronDown } from 'lucide-react';
 
-import { drinks } from "../components/drinklist";
-import { stuff } from "../components/stufflist";
+import { drinks } from "../../components/drinklist";
+import { stuff } from "../../components/stufflist";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 
 const images = [
@@ -28,6 +31,8 @@ const images = [
 ];
 
 export default function Drinks() {
+    const { data: session, status } = useSession();
+
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const [focused, setFocused] = useState(false);
@@ -36,7 +41,11 @@ export default function Drinks() {
     const [showAllNonVeg, setShowAllNonVeg] = useState(false);
 
 
-
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            redirect("/");
+        }
+    }, [status]);
 
     useEffect(() => {
 
@@ -52,11 +61,11 @@ export default function Drinks() {
             <LeftSidebar />
             <div className="flex w-full flex-row h-screen">
                 <div className="w-full xl:w-2/3 p-14 ">
-                    <div className="w-full pl-14 sm:pl-20 lg:pl-24">
+                    <div className="w-full pl-14 sm:pl-20 pb-28 lg:pl-24">
                         <div className="flex w-full items-center flex-col md:flex-row align-top justify-left gap-8">
-                            <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center cursor-pointer hover:bg-gray-400 transition">
+                            <Link href="/landing" className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center cursor-pointer hover:bg-gray-400 transition">
                                 <ArrowLeft className="w-10 h-10 text-white" />
-                            </div>
+                            </Link>
                             <div
                                 className={`flex items-center   border-2 lg:w-80 lg:h-14 w-48 h-10 rounded-full px-4 py-2 transition-colors duration-300
                    ${focused ? 'border-orange-500' : 'border-gray-300'}`}
@@ -100,6 +109,7 @@ export default function Drinks() {
                                     heading={stuffitem.heading}
                                     veg={stuffitem.veg}
                                     price={stuffitem.price}
+                                    text={stuffitem.text}
                                 />
                             ))}
                         </div>
@@ -117,6 +127,7 @@ export default function Drinks() {
                                         heading={stuffitem.heading}
                                         veg={stuffitem.veg}
                                         price={stuffitem.price}
+                                        text={stuffitem.text}
                                     />
                                 ))}
                             </div>
@@ -151,6 +162,7 @@ export default function Drinks() {
                                     heading={drink.heading}
                                     veg={drink.veg}
                                     price={drink.price}
+                                    text={drink.text}
                                 />
                             ))}
                         </div>
@@ -168,6 +180,7 @@ export default function Drinks() {
                                         heading={drink.heading}
                                         veg={drink.veg}
                                         price={drink.price}
+                                        text={drink.text}
                                     />
                                 ))}
                             </div>

@@ -1,4 +1,4 @@
-import { User, Pizza, ShoppingBasket, Coffee } from 'lucide-react';
+import { User, Pizza, ShoppingBasket, Coffee, LogOut } from 'lucide-react';
 import Link from 'next/link';
 
 
@@ -14,7 +14,7 @@ export default function LeftSidebar() {
             <ul className="p-4 mt-52 space-y-6 sm:p-6 sm:space-y-10 lg:p-8 lg:space-y-20">
                 <li>
                     <Link
-                        href="/dashboard"
+                        href="/pizza"
                         className="flex items-center hover:text-orange-500 text-gray-700
               text-xl
               sm:text-2xl
@@ -33,7 +33,7 @@ export default function LeftSidebar() {
                 </li>
                 <li>
                     <Link
-                        href="/dashboard/analytics"
+                        href="/drinks"
                         className="flex items-center hover:text-orange-500 text-gray-700
               text-xl
               sm:text-2xl
@@ -52,7 +52,7 @@ export default function LeftSidebar() {
                 </li>
                 <li>
                     <Link
-                        href="/dashboard/cart"
+                        href="/cart"
                         className="flex items-center hover:text-orange-500 text-gray-700
               text-xl
               sm:text-2xl
@@ -65,13 +65,13 @@ export default function LeftSidebar() {
                 lg:w-10 lg:h-10 lg:min-w-[40px]"
                         />
                         <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap sm:ml-5">
-                            Cart
+                            Orders
                         </span>
                     </Link>
                 </li>
                 <li>
                     <Link
-                        href="/dashboard/profile"
+                        href="/profile"
                         className="flex items-center hover:text-orange-500 text-gray-700
               text-xl
               sm:text-2xl
@@ -89,6 +89,17 @@ export default function LeftSidebar() {
                     </Link>
                 </li>
             </ul>
+            <div className="absolute bottom-80 md:bottom-24  w-full px-4 sm:px-6 lg:px-8">
+                <Link
+                    href="/profile"
+                    className="flex items-center text-red-600 hover:text-red-800 text-xl sm:text-2xl lg:text-3xl"
+                >
+                    <LogOut className="w-7 h-7 min-w-[28px] sm:w-8 sm:h-8 sm:min-w-[32px] lg:w-10 lg:h-10 lg:min-w-[40px]" />
+                    <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap sm:ml-5">
+                        Logout
+                    </span>
+                </Link>
+            </div>
         </aside>
     );
 }

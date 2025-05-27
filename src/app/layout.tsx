@@ -1,17 +1,12 @@
-// app/layout.tsx
+// src/app/layout.tsx
 import "./globals.css";
-
-import { Inter } from "next/font/google";
-import { Merriweather } from "next/font/google";
-
-
+import { Inter, Merriweather } from "next/font/google";
+import { Providers } from "./providers";
 
 export const metadata = {
   title: "My App",
   description: "An app with Inter font",
 };
-
-
 
 export default function RootLayout({
   children,
@@ -21,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans">
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

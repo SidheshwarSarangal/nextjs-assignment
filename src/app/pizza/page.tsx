@@ -2,17 +2,21 @@
 "use client";
 
 import Image from "next/image";
-import LeftSidebar from "../components/LeftSideBar";
+import LeftSidebar from "../../components/LeftSideBar";
 import { useEffect, useState } from "react";
 import { Search } from 'lucide-react';
-import HomeBigCards from "../components/HomeBigCards";
-import MenuBar from "../components/MenuBar";
-import FoodCard from "../components/FoodCard";
+import HomeBigCards from "../../components/HomeBigCards";
+import MenuBar from "../../components/MenuBar";
+import FoodCard from "../../components/FoodCard";
 import { ArrowLeft } from 'lucide-react';
-import { vegPizzas } from "../components/vegpizzalist";
-import { nonVegPizzas } from "../components/nonvegpizzalist";
+import { vegPizzas } from "../../components/vegpizzalist";
+import { nonVegPizzas } from "../../components/nonvegpizzalist";
 import { ChevronDown } from 'lucide-react';
-
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 
 
@@ -27,6 +31,10 @@ const images = [
 ];
 
 export default function Pizza() {
+  const { data: session, status } = useSession();
+
+
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [focused, setFocused] = useState(false);
@@ -35,7 +43,11 @@ export default function Pizza() {
   const [showAllNonVeg, setShowAllNonVeg] = useState(false);
 
 
-
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      redirect("/");
+    }
+  }, [status]);
 
   useEffect(() => {
 
@@ -53,9 +65,9 @@ export default function Pizza() {
         <div className="w-full xl:w-4/5 p-14 ">
           <div className="w-full pl-14 sm:pl-20 lg:pl-24">
             <div className="flex w-full items-center flex-col md:flex-row align-top justify-left gap-8">
-              <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center cursor-pointer hover:bg-gray-400 transition">
+              <Link href="/landing" className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center cursor-pointer hover:bg-gray-400 transition">
                 <ArrowLeft className="w-10 h-10 text-white" />
-              </div>
+              </Link>
               <div
                 className={`flex items-center   border-2 lg:w-80 lg:h-14 w-48 h-10 rounded-full px-4 py-2 transition-colors duration-300
                    ${focused ? 'border-orange-500' : 'border-gray-300'}`}
@@ -72,7 +84,7 @@ export default function Pizza() {
             </div>
 
             <div className="flex flex-row mt-7 align-baseline">
-              <Image src="/rank.svg" alt="Best" height={50} width={50} className="hidden md:block "/>
+              <Image src="/rank.svg" alt="Best" height={50} width={50} className="hidden md:block " />
               <div className="font-bold ml-1 text-4xl pt-3 text-orange-400">
                 Bestseller
               </div>
@@ -84,12 +96,14 @@ export default function Pizza() {
                   heading="Gourmet"
                   veg={true}
                   price={180}
+                  text="Try our special Gourmet Pizza. With the enriching flavours from Italy, it fills you with joy. It consists of Cheese, Olives and Capsicum"
                 />
                 <FoodCard
                   image="/BBQ.jpg"
                   heading="Pepper Barbeque"
                   veg={false}
                   price={220}
+                  text="Try out special Chicken Pepper Barbeque Pizza. It gives you a Pepper taste with smoky flavour. It consists of Cheese and Grilled Chicken pieces"
                 />
 
               </div>
@@ -122,6 +136,7 @@ export default function Pizza() {
                   heading={pizza.heading}
                   veg={pizza.veg}
                   price={pizza.price}
+                  text={pizza.text}
                 />
               ))}
             </div>
@@ -139,6 +154,7 @@ export default function Pizza() {
                     heading={pizza.heading}
                     veg={pizza.veg}
                     price={pizza.price}
+                    text={pizza.text}
                   />
                 ))}
               </div>
@@ -171,6 +187,7 @@ export default function Pizza() {
                   heading={pizza.heading}
                   veg={pizza.veg}
                   price={pizza.price}
+                  text={pizza.text}
                 />
               ))}
             </div>
@@ -188,6 +205,7 @@ export default function Pizza() {
                     heading={pizza.heading}
                     veg={pizza.veg}
                     price={pizza.price}
+                    text={pizza.text}
                   />
                 ))}
               </div>

@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { signIn } from "next-auth/react";
-
 
 const images = [
   "/login-side1.jpg",
@@ -13,20 +11,13 @@ const images = [
   "/login-side5.jpg"
 ];
 
-export default function Home() {
+export default function Signup() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail]=useState("");
 
   const [rememberMe, setRememberMe] = useState(false);
-
-  
-  
-  const handleGoogleLogin = () => {
-    signIn("google", { callbackUrl: "/landing" });
-  };
 
   useEffect(() => {
 
@@ -42,15 +33,13 @@ export default function Home() {
       {/* Left Side */}
       <div className=" w-full lg:w-2/3 xl:w-1/2 h-full p-8">
         <div className="mx-auto w-full sm:w-5/6 md:w-2/3">
-          <div className="w-full flex items-center mt-28 justify-center text-5xl md:text-7xl mx-auto align-middle font-[var(--font-merriweather)]">Say Cheese!!!!</div>
-          <div className="w-full flex items-center mt-6 justify-center text-xl md:text-3xl text-gray-700">Hello! Wanna try our delicious pizzas?</div>
+          <div className="w-full flex items-center mt-28 justify-center text-5xl md:text-7xl mx-auto align-middle font-[var(--font-merriweather)]">Welcome</div>
+          <div className="w-full flex items-center mt-6 justify-center text-xl md:text-3xl text-gray-700">Proceed Signup for your PIZZA!!!!</div>
           <div className="w-full flex flex-col gap-2 md:gap-3 mt-7 md:mt-12">
             <label className="text-xl md:text-2xl">Email</label>
             <input
               type="email"
               placeholder="Enter your Email"
-              value={email}
-              onChange={(e)=> setEmail(e.target.value)}
               className="w-full px-4 py-2 mx-3 border text-xl border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
             />
           </div>
@@ -76,37 +65,42 @@ export default function Home() {
               )}
             </div>
           </div>
-          <div className="w-full flex justify-between items-center ml-1 mt-8 px-3 pr-0">
-            <label className="flex items-center gap-2 ml-1 text-sm md:text-lg cursor-pointer">
-              <input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={() => setRememberMe(!rememberMe)}
-                className="accent-orange-500 w-5 h-5"
-              />
-              <div className="hover:text-orange-500">
-                Remember Me
-              </div>
-            </label>
 
-            <div>
-              <a href="#" className=" hover:text-orange-500 mr-1 text-sm md:text-lg">
-                Forgot Password?
-              </a>
+          <div className="w-full flex flex-col gap-2 md:gap-3 mt-5 md:mt-8">
+            <label className="text-xl md:text-2xl">Confirm Password</label>
+            <div className="relative ">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full  px-4 py-2 mx-3 border text-xl border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 "
+              />
+
+              {password.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute -right-6 mr-8 top-1/2 transform -translate-y-1/2 text-lg text-gray-600 hover:text-orange-500 focus:outline-none"
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              )}
             </div>
           </div>
-          <div className="mt-3">
+          
+          <div className="mt-8">
             <button
               type="submit"
               className="w-full px-4 py-3 mx-3 bg-orange-500 text-white text-lg md:text-xl font-semibold  rounded-md hover:bg-orange-700 transition duration-200"
             >
-              Sign In
+              Sign Up
             </button>
           </div>
           <div
             role="button"
             tabIndex={0}
-            onClick={handleGoogleLogin}
+            onClick={() => alert("Google Sign-In clicked!")}
             className="w-full px-4 py-2 mx-3 mt-5 flex cursor-pointer select-none items-center justify-center gap-3 rounded-md border border-gray-300 bg-white text-lg md:text-xl font-semibold text-gray-700 shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
           >
             {/* Google Icon (SVG) */}
@@ -134,15 +128,15 @@ export default function Home() {
               />
             </svg>
 
-            <div>Sign in with Google</div>
+            <div>Sign un with Google</div>
           </div>
           <div className="mt-5 text-center text-sm md:text-lg text-gray-700">
-            Don&apos;t have an account?{" "}
+            Do have an account?{" "}
             <a
-              href="/signup"
+              href="/"
               className="font-semibold text-orange-500 hover:text-orange-600 cursor-pointer"
             >
-              Create account
+              Signin
             </a>
           </div>
 
