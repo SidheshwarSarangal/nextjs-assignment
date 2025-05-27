@@ -9,12 +9,8 @@ import Image from "next/image";
 import LeftSidebar from "../../components/LeftSideBar";
 import { useEffect, useState } from "react";
 import { Pizza, Search } from 'lucide-react';
-import HomeBigCards from "../../components/HomeBigCards";
-import MenuBar from "../../components/MenuBar";
 import FoodCard from "../../components/FoodCard";
 import { ArrowLeft } from 'lucide-react';
-import { vegPizzas } from "../../components/vegpizzalist";
-import { nonVegPizzas } from "../../components/nonvegpizzalist";
 import { ChevronDown } from 'lucide-react';
 
 import { drinks } from "../../components/drinklist";
@@ -48,6 +44,7 @@ export default function Drinks() {
             redirect("/");
         }
     }, [status]);
+    console.log(session?.user?.name);
 
     //for image changing
     useEffect(() => {

@@ -8,11 +8,10 @@
 
 
 import Image from "next/image";
-import { ArrowLeft, ArrowUp, ArrowDown, Trash2, Pizza } from 'lucide-react';
+import { ArrowLeft, ArrowUp, ArrowDown, Pizza } from 'lucide-react';
 import LeftSidebar from "../../components/LeftSideBar";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Session } from "inspector/promises";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 

@@ -5,6 +5,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const images = [
   "/login-side1.jpg",
@@ -18,7 +19,6 @@ export default function Signup() {
   const [currentIndex, setCurrentIndex] = useState(0); //for image changes
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); //show password
-  const [rememberMe, setRememberMe] = useState(false);
 
   //Image changing
   useEffect(() => {
@@ -141,12 +141,12 @@ export default function Signup() {
           {/*Create Account Link*/}
           <div className="mt-5 text-center text-sm md:text-lg text-gray-700">
             Do have an account?{" "}
-            <a
+            <Link
               href="/"
               className="font-semibold text-orange-500 hover:text-orange-600 cursor-pointer"
             >
               Signin
-            </a>
+            </Link>
           </div>
 
         </div>

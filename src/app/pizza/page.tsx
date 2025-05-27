@@ -7,15 +7,11 @@ import Image from "next/image";
 import LeftSidebar from "../../components/LeftSideBar";
 import { useEffect, useState } from "react";
 import { Pizza, Search } from 'lucide-react';
-import HomeBigCards from "../../components/HomeBigCards";
-import MenuBar from "../../components/MenuBar";
 import FoodCard from "../../components/FoodCard";
 import { ArrowLeft } from 'lucide-react';
 import { vegPizzas } from "../../components/vegpizzalist";
 import { nonVegPizzas } from "../../components/nonvegpizzalist";
 import { ChevronDown } from 'lucide-react';
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -39,6 +35,7 @@ export default function PizzaPage() {
   const [focused, setFocused] = useState(false);
   const [showAllVeg, setShowAllVeg] = useState(false);
   const [showAllNonVeg, setShowAllNonVeg] = useState(false);
+  console.log(session?.user?.name);
 
   //for authentication
   useEffect(() => {

@@ -7,8 +7,6 @@ import Image from "next/image";
 import LeftSidebar from "../../components/LeftSideBar";
 import { useEffect, useState } from "react";
 import { ArrowLeft, MapPin, Phone, LogOut, Pizza } from "lucide-react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
