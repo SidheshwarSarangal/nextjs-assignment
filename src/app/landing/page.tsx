@@ -1,3 +1,6 @@
+// The page is divided into two parts. The left for sign-in. The right for Images. The right part images are not visible for smaller displays.
+//THe main landing page after sign in
+
 "use client";
 
 import Image from "next/image";
@@ -22,9 +25,9 @@ const images = [
 ];
 
 export default function LandingPage() {
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession(); //for authentication
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);  //for image changing
   const [focused, setFocused] = useState(false);
 
 
@@ -35,6 +38,8 @@ export default function LandingPage() {
     }
   }, [status]);
 
+
+  //for image changing
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -43,6 +48,8 @@ export default function LandingPage() {
     return () => clearInterval(interval);
   }, []);
 
+
+  //for screen loading time
   if (status === "loading") {
     return (
       <div className="h-screen w-full flex flex-col justify-center items-center bg-white">
@@ -73,8 +80,13 @@ export default function LandingPage() {
 
   return (
     <div className="w-full cursor-default">
+      {/* left side bar*/}
       <LeftSidebar />
+
+      {/* Main Layout */}
       <div className="flex flex-row h-screen">
+
+        {/* Left Profile Info Section */}
         <div className="w-full xl:w-4/5 p-14">
           <div className="w-full pl-14 sm:pl-20 lg:pl-24">
             <div className="flex flex-col md:flex-row justify-between">
@@ -101,9 +113,13 @@ export default function LandingPage() {
               </div>
             </div>
 
+            {/* sliding section*/}
             <div><HomeBigCards /></div>
+
+            {/*Horizontal Menu Bar*/}
             <div><MenuBar /></div>
 
+            {/*BestSeller*/}
             <div className="flex flex-row mt-7 align-baseline">
               <Image src="/rank.svg" alt="Best" height={50} width={50} />
               <div className="font-bold ml-1 text-4xl pt-3 text-orange-400">
@@ -130,6 +146,7 @@ export default function LandingPage() {
           </div>
         </div>
 
+        {/*Right Image Section*/}
         <div className="fixed right-0 top-0 h-full overflow-hidden w-0 xl:w-1/5">
           {images.map((src, index) => (
             <Image

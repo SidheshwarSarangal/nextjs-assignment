@@ -1,3 +1,6 @@
+//In this page the user can log out. I have used proper auth clean for logging out
+// The page is divided into two parts. The left for sign-in. The right for Images. The right part images are not visible for smaller displays.
+
 "use client";
 
 import Image from "next/image";
@@ -11,8 +14,6 @@ import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 
-
-
 const images = [
     "/home1.jpg",
     "/login-side1.jpg",
@@ -24,20 +25,18 @@ const images = [
 ];
 
 export default function Profile() {
-    const { data: session, status } = useSession();
+    const { data: session, status } = useSession(); //for authentication
 
+    const [currentIndex, setCurrentIndex] = useState(0); //for image changing
 
-
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [address, setAddress] = useState("");
-    const [phone, setPhone] = useState("");
-
+    //for authentication
     useEffect(() => {
         if (status === "unauthenticated") {
             redirect("/");
         }
     }, [status]);
 
+    //for image changing
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -46,6 +45,7 @@ export default function Profile() {
         return () => clearInterval(interval);
     }, []);
 
+    //for screen loading time
     if (status === "loading") {
         return (
             <div className="h-screen w-full flex flex-col justify-center items-center bg-white">
@@ -72,27 +72,28 @@ export default function Profile() {
             </div>
         );
     }
+    
 
     return (
         <div className="w-full cursor-default">
+            {/* left side bar*/}
             <LeftSidebar />
 
             {/* Main Layout */}
             <div className="flex w-full flex-row h-screen">
+
                 {/* Left Profile Info Section */}
                 <div className="w-full ml-14 md:ml-24 xl:w-4/5 p-6 sm:p-10 md:p-14">
                     <div className="max-w-xl">
-                        {/* Back Arrow */}
                         <div className="mb-6">
                             <Link href="/landing" className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center cursor-pointer hover:bg-gray-600 transition">
                                 <ArrowLeft className="w-6 h-6 text-white" />
                             </Link>
                         </div>
 
-                        {/* Hi Name */}
                         <h1 className="text-4xl font-bold text-gray-800 mb-8">Hi {session?.user?.name}</h1>
 
-                        {/* Address Input */}
+                        {/* Address  */}
                         <div className="mb-6">
                             <label className="flex items-center text-gray-700 text-lg font-semibold mb-2">
                                 <MapPin className="w-5 h-5 mr-2" />
@@ -103,7 +104,7 @@ export default function Profile() {
                             </div>
                         </div>
 
-                        {/* Phone Number Input */}
+                        {/* Phone Number  */}
                         <div className="mb-6">
                             <label className="flex items-center text-gray-700 text-lg font-semibold mb-2">
                                 <Phone className="w-5 h-5 mr-2" />
@@ -124,7 +125,8 @@ export default function Profile() {
                     </div>
                 </div>
 
-                {/* Right Side Rotating Images */}
+
+                {/* Right Side Images */}
                 <div className="fixed right-0 top-0 h-full overflow-hidden w-0 xl:w-1/5">
                     {images.map((src, index) => (
                         <Image

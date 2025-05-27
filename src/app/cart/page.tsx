@@ -1,3 +1,9 @@
+//Divided into two parts.
+//The left part shows table of orders
+//The right part shhows payemnt and bill
+//It is responsive. THe table is visible good in smaller displays as well
+//The page also contains sort funtionality based on date/time and filter based on status.
+
 "use client";
 
 
@@ -12,8 +18,9 @@ import { redirect } from "next/navigation";
 
 
 export default function CartPage() {
-    const { data: session, status } = useSession();
+    const { data: session, status } = useSession(); //for authentication
 
+    //table data
     const [cartItems, setCartItems] = useState([
         {
             id: 24,
@@ -49,31 +56,32 @@ export default function CartPage() {
         }
     ]);
 
+    //for seach and filter of table data 
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
     const [filterStatus, setFilterStatus] = useState<string>("all");
 
+    //funtionality providing for searcg and filter
     const displayedItems = useMemo(() => {
         let items = [...cartItems];
-
         if (filterStatus !== "all") {
             items = items.filter(item => item.status === filterStatus);
         }
-
         items.sort((a, b) => {
             const dateA = new Date(a.date).getTime();
             const dateB = new Date(b.date).getTime();
             return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
         });
-
         return items;
     }, [cartItems, filterStatus, sortOrder]);
 
 
+    //for authentication
     useEffect(() => {
         if (status === "unauthenticated") {
             redirect("/");
         }
     }, [status]);
+
 
     const increaseQty = (id: number) => {
         setCartItems(prev =>
@@ -93,6 +101,7 @@ export default function CartPage() {
         );
     };
 
+    //for screen loading time
     if (status === "loading") {
         return (
             <div className="h-screen w-full flex flex-col justify-center items-center bg-white">
@@ -120,6 +129,7 @@ export default function CartPage() {
         );
     }
 
+
     return (
         <div className="flex cursor-default">
             {/* Sticky Left Sidebar */}
@@ -130,7 +140,7 @@ export default function CartPage() {
             {/* Main Content */}
             <div className="ml-14 pt-8 md:pt-14 z-9 md:ml-24 relative w-full pl-8 px-0 xl:px-16 md:p-8 flex flex-col lg:flex-row gap-12 min-h-screen ">
 
-                {/* Cart Section (Left - 60%) */}
+                {/* Cart Section */}
                 <div className="w-full pr-[5%] lg:w-3/5 space-y-6">
                     {/* Back Arrow */}
                     <Link href="/landing" className="w-12 h-12 mb-10 rounded-full bg-gray-800 flex items-center justify-center cursor-pointer hover:bg-gray-600 transition">
@@ -140,8 +150,6 @@ export default function CartPage() {
                     {/* Cart Heading */}
                     <div>
                         <h3 className="text-3xl md:text-5xl font-bold text-gray-800 mb-1">Shopping cart</h3>
-
-
                         {/* Orders summary above cart items */}
                         <div className="mb-6">
                             <h4 className="text-2xl p-2 md:py-4 font-bold text-gray-700 mb-4">
@@ -159,8 +167,7 @@ export default function CartPage() {
                             </div>
                         </div>
 
-                        {/* Cart Items */}
-                        {/* Orders Table */}
+                        {/* sort and filter drop down */}
                         <div className="flex flex-wrap gap-4 mb-6">
                             <div>
                                 <label htmlFor="sortOrder" className="block mb-1 font-semibold text-gray-700">Sort by Date</label>
@@ -190,6 +197,7 @@ export default function CartPage() {
                             </div>
                         </div>
 
+                        {/* table starts here */}
                         <div className="overflow-x-auto rounded-2xl shadow-lg">
                             <table className="min-w-full bg-white text-center text-sm md:text-base">
                                 <thead className="bg-orange-100 text-gray-700 font-bold">
@@ -244,10 +252,9 @@ export default function CartPage() {
                                 </tbody>
                             </table>
                         </div>
-
-
                     </div>
                 </div>
+
 
                 {/* Final Bill (Right - 40%) */}
                 <div className="w-full lg:absolute top-28 right-8 lg:w-2/5 bg-gradient-to-b mb-20 from-orange-400 to-yellow-300 text-white rounded-2xl p-6 mr-2 shadow-xl">
@@ -255,7 +262,7 @@ export default function CartPage() {
                         <h2 className="text-5xl font-bold">Final Bill</h2>
                     </div>
 
-                    {/* Offers */}
+                    {/* Dummy Offers */}
                     <div className="flex gap-2 mb-6">
                         <span className="bg-white text-orange-500 px-3 py-1 rounded-full text-md md:text-xl font-semibold">
                             10% OFF

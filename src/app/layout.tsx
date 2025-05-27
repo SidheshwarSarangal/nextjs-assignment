@@ -4,7 +4,7 @@ import { Inter, Merriweather } from "next/font/google";
 import { Providers } from "./providers";
 
 export const metadata = {
-  title: "My App",
+  title: "Pizzac",
   description: "An app with Inter font",
 };
 

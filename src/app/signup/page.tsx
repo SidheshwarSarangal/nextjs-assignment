@@ -1,3 +1,6 @@
+// This is the signup page. Here all aspects are dummy
+// The page is divided into two parts. The left for sign-in. The right for Images. The right part images are not visible for smaller displays.
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -12,19 +15,16 @@ const images = [
 ];
 
 export default function Signup() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
+  const [currentIndex, setCurrentIndex] = useState(0); //for image changes
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false); //show password
   const [rememberMe, setRememberMe] = useState(false);
 
+  //Image changing
   useEffect(() => {
-
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 9000); // 9 seconds
-
     return () => clearInterval(interval);
   }, []);
 
@@ -35,6 +35,8 @@ export default function Signup() {
         <div className="mx-auto w-full sm:w-5/6 md:w-2/3">
           <div className="w-full flex items-center mt-28 justify-center text-5xl md:text-7xl mx-auto align-middle font-[var(--font-merriweather)]">Welcome</div>
           <div className="w-full flex items-center mt-6 justify-center text-xl md:text-3xl text-gray-700">Proceed Signup for your PIZZA!!!!</div>
+
+          {/* Form filling starts from here*/}
           <div className="w-full flex flex-col gap-2 md:gap-3 mt-7 md:mt-12">
             <label className="text-xl md:text-2xl">Email</label>
             <input
@@ -43,6 +45,7 @@ export default function Signup() {
               className="w-full px-4 py-2 mx-3 border text-xl border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
             />
           </div>
+
           <div className="w-full flex flex-col gap-2 md:gap-3 mt-5 md:mt-8">
             <label className="text-xl md:text-2xl">Password</label>
             <div className="relative ">
@@ -66,6 +69,7 @@ export default function Signup() {
             </div>
           </div>
 
+
           <div className="w-full flex flex-col gap-2 md:gap-3 mt-5 md:mt-8">
             <label className="text-xl md:text-2xl">Confirm Password</label>
             <div className="relative ">
@@ -88,7 +92,8 @@ export default function Signup() {
               )}
             </div>
           </div>
-          
+
+          {/* Sign In Button*/}
           <div className="mt-8">
             <button
               type="submit"
@@ -97,6 +102,8 @@ export default function Signup() {
               Sign Up
             </button>
           </div>
+
+          {/*Google Sign Un Button*/}
           <div
             role="button"
             tabIndex={0}
@@ -130,6 +137,8 @@ export default function Signup() {
 
             <div>Sign un with Google</div>
           </div>
+
+          {/*Create Account Link*/}
           <div className="mt-5 text-center text-sm md:text-lg text-gray-700">
             Do have an account?{" "}
             <a

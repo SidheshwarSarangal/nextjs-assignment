@@ -1,3 +1,7 @@
+// The page is divided into two parts. The left for sign-in. The right for Images. The right part images are not visible for smaller displays.
+// This page just shows the drinks menu
+//Here I have used same logic of veg and non veg pizzas but just final result in frontend is changed
+// You will find same variables used here
 
 "use client";
 
@@ -31,22 +35,21 @@ const images = [
 ];
 
 export default function Drinks() {
-    const { data: session, status } = useSession();
+    const { data: session, status } = useSession(); //for authentication
 
-    const [currentIndex, setCurrentIndex] = useState(0);
-
+    const [currentIndex, setCurrentIndex] = useState(0); //for image changing
     const [focused, setFocused] = useState(false);
-
     const [showAllVeg, setShowAllVeg] = useState(false);
     const [showAllNonVeg, setShowAllNonVeg] = useState(false);
 
-
+    //for authentication
     useEffect(() => {
         if (status === "unauthenticated") {
             redirect("/");
         }
     }, [status]);
 
+    //for image changing
     useEffect(() => {
 
         const interval = setInterval(() => {
@@ -56,17 +59,18 @@ export default function Drinks() {
         return () => clearInterval(interval);
     }, []);
 
+    //for screen loading time
     if (status === "loading") {
         return (
-          <div className="h-screen w-full flex flex-col justify-center items-center bg-white">
-            <div className="w-48 h-48 mb-6 animate-shake-pulse">
-              <Pizza size={192} className="text-orange-500" />
-    
-            </div>
-            <p className="text-3xl font-bold text-orange-600 typing">Loading...</p>
-    
-            {/* Typing animation only */}
-            <style jsx>{`
+            <div className="h-screen w-full flex flex-col justify-center items-center bg-white">
+                <div className="w-48 h-48 mb-6 animate-shake-pulse">
+                    <Pizza size={192} className="text-orange-500" />
+
+                </div>
+                <p className="text-3xl font-bold text-orange-600 typing">Loading...</p>
+
+                {/* Typing animation only */}
+                <style jsx>{`
               @keyframes typing {
                 from { width: 0 }
                 to { width: 8ch }
@@ -79,14 +83,19 @@ export default function Drinks() {
                 animation: typing 2s steps(8) infinite alternate;
               }
             `}</style>
-          </div>
+            </div>
         );
-      }
+    }
 
     return (
         <div className="w-full cursor-default">
+            {/* left side bar*/}
             <LeftSidebar />
+
+            {/* Main Layout */}
             <div className="flex w-full flex-row h-screen">
+
+                {/* Left Profile start Section */}
                 <div className="w-full xl:w-2/3 p-14 ">
                     <div className="w-full pl-14 sm:pl-20 pb-28 lg:pl-24">
                         <div className="flex w-full items-center flex-col md:flex-row align-top justify-left gap-8">
@@ -109,6 +118,7 @@ export default function Drinks() {
                         </div>
 
 
+                        {/* Soft Drink Section */}
                         <div className="flex flex-row mt-7 align-baseline pt-12 items-center justify-left gap-2 md:gap-8 pr-6">
                             <div className="flex items-center">
                                 <div className="w-6 h-6 bg-orange-400 hidden md:block rounded-full"></div>
@@ -127,7 +137,7 @@ export default function Drinks() {
                             </button>
                         </div>
 
-                        {/* Always visible first 2 pizzas */}
+                        {/* Always visible first 2 drinks */}
                         <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 mt-6 max-w-4xl">
                             {stuff.slice(0, 2).map((stuffitem, index) => (
                                 <FoodCard
@@ -141,7 +151,7 @@ export default function Drinks() {
                             ))}
                         </div>
 
-                        {/* Expandable section for remaining Non-Veg pizzas */}
+                        {/* Expandable section for remaining  */}
                         <div
                             className={`overflow-hidden transition-all pb-7 duration-700 ease-in-out ${showAllNonVeg ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
                                 }`}
@@ -161,7 +171,7 @@ export default function Drinks() {
                         </div>
 
 
-
+                        {/* Cold Drink Section */}
                         <div className="flex flex-row mt-7 align-baseline items-center justify-left pt-8 gap-2 md:gap-8 pr-6">
                             <div className="flex items-center">
                                 <div className="w-6 h-6 bg-red-500 hidden md:block rounded-full"></div>
@@ -194,7 +204,7 @@ export default function Drinks() {
                             ))}
                         </div>
 
-                        {/* Expandable section for remaining pizzas */}
+                        {/* Expandable section for remaining  */}
                         <div
                             className={`overflow-hidden transition-all mb-10 pb-6 duration-700 ease-in-out ${showAllVeg ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
                                 }`}
@@ -212,13 +222,11 @@ export default function Drinks() {
                                 ))}
                             </div>
                         </div>
-
-
-
                     </div>
                 </div>
 
 
+                {/* Right Side Picture Section */}
                 <div className="fixed right-0 top-0 h-full overflow-hidden w-0 xl:w-1/3">
                     {images.map((src, index) => (
                         <Image

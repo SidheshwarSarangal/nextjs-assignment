@@ -1,3 +1,5 @@
+// The page is divided into two parts. The left for sign-in. The right for Images. The right part images are not visible for smaller displays.
+// THis page just shows the pizza menu
 
 "use client";
 
@@ -31,26 +33,22 @@ const images = [
 ];
 
 export default function PizzaPage() {
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession(); //for authentication
 
-
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
+  const [currentIndex, setCurrentIndex] = useState(0); //for image changing
   const [focused, setFocused] = useState(false);
-
   const [showAllVeg, setShowAllVeg] = useState(false);
   const [showAllNonVeg, setShowAllNonVeg] = useState(false);
 
-
+  //for authentication
   useEffect(() => {
     if (status === "unauthenticated") {
       redirect("/");
     }
   }, [status]);
 
+  //for image changing
   useEffect(() => {
-
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 9000); // 9 seconds
@@ -58,22 +56,21 @@ export default function PizzaPage() {
     return () => clearInterval(interval);
   }, []);
 
+
+  //for screen loading time
   if (status === "loading") {
     return (
       <div className="h-screen w-full flex flex-col justify-center items-center bg-white">
         <div className="w-48 h-48 mb-6 animate-shake-pulse">
           <Pizza size={192} className="text-orange-500" />
-
         </div>
         <p className="text-3xl font-bold text-orange-600 typing">Loading...</p>
-
         {/* Typing animation only */}
         <style jsx>{`
           @keyframes typing {
             from { width: 0 }
             to { width: 8ch }
           }
-  
           .typing {
             overflow: hidden;
             white-space: nowrap;
@@ -85,10 +82,16 @@ export default function PizzaPage() {
     );
   }
 
+
   return (
     <div className="w-full cursor-default">
+      {/* left side bar*/}
       <LeftSidebar />
+
+      {/* Main Layout */}
       <div className="flex w-full flex-row h-screen">
+
+        {/* Left  start Section */}
         <div className="w-full xl:w-4/5 p-14 ">
           <div className="w-full pl-14 sm:pl-20 lg:pl-24">
             <div className="flex w-full items-center flex-col md:flex-row align-top justify-left gap-8">
@@ -110,6 +113,7 @@ export default function PizzaPage() {
               </div>
             </div>
 
+            {/*BestSeller*/}
             <div className="flex flex-row mt-7 align-baseline">
               <Image src="/rank.svg" alt="Best" height={50} width={50} className="hidden md:block " />
               <div className="font-bold ml-1 text-4xl pt-3 text-orange-400">
@@ -132,16 +136,15 @@ export default function PizzaPage() {
                   price={220}
                   text="Try out special Chicken Pepper Barbeque Pizza. It gives you a Pepper taste with smoky flavour. It consists of Cheese and Grilled Chicken pieces"
                 />
-
               </div>
-
             </div>
+
+            {/*Veg Pizzas*/}
             <div className="flex flex-row mt-7 align-baseline items-center justify-left gap-2 md:gap-8 pr-6">
               <div className="flex items-center">
                 <div className="w-6 h-6 bg-green-600 hidden md:block rounded-full"></div>
                 <div className="font-bold ml-1 text-4xl  text-green-500">Veg Pizzas</div>
               </div>
-
               <button
                 onClick={() => setShowAllVeg(!showAllVeg)}
                 className="text-xl flex items-center hover:animate-shake text-green-700 hover:text-green-900 transition-colors duration-300"
@@ -187,6 +190,8 @@ export default function PizzaPage() {
               </div>
             </div>
 
+
+            {/*Non Veg Pizzas*/}
             <div className="flex flex-row mt-7 align-baseline items-center justify-left gap-2 md:gap-8 pr-6">
               <div className="flex items-center">
                 <div className="w-6 h-6 bg-red-800 hidden md:block rounded-full"></div>
@@ -241,7 +246,7 @@ export default function PizzaPage() {
           </div>
         </div>
 
-
+        {/* Right Side Picture Section */}
         <div className="fixed right-0 top-0 h-full overflow-hidden w-0 xl:w-1/5">
           {images.map((src, index) => (
             <Image
