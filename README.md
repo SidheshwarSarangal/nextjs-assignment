@@ -1,37 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍕 Pizza Ordering Website
 
-## Getting Started
+A modern pizza ordering web application built with **Next.js (App Router)**, **Tailwind CSS**, and **NextAuth.js** for authentication. This project features a responsive UI, animated promo sliders, Google OAuth login, and deployment on Vercel.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🗓 Project Timeline & Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Day 1: Frontend Structure, Layout & Landing Page
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Project Setup:**
+  - Created with Next.js using the App Router.
+  - Installed and configured Tailwind CSS for styling.
+  - Configured global styles and Tailwind content paths.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Layout & Navigation:**
+  - Created a global layout with a responsive navbar.
+  - Navbar includes links to Home, Pizzas, Drinks, Cart, and Profile pages.
 
-## Learn More
+- **Landing Page:**
+  - Designed promotional content with two main parts:
+    - Left side: Card carousel built with **keen-slider**.
+    - Right side: Animated promo image and text using **framer-motion**.
+  - Implemented automatic slide transitions every 10 seconds.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Day 2: Feature Pages (Pizza, Drinks, Cart, Profile, Sign In & Sign Up)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Pizzas Page:**
+  - Static grid layout displaying pizzas with name, price, and “Add to Cart” button.
+  - Images served from `/public/pizzas/`.
 
-## Deploy on Vercel
+- **Drinks Page:**
+  - Similar grid layout with accordion-style categories (Special, Cold Drinks).
+  - Right side features rotating promo carousel with animations.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Cart Page:**
+  - Shows selected cart items on the left.
+  - Summary and total calculation on the right.
+  - “Remove” button for each item.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# nextjs-assignment
+- **Profile Page:**
+  - Displays user information (avatar, email).
+  - Shows past orders (static or dynamic).
+  - Shows login prompt if user is not authenticated.
+
+- **Sign In / Sign Up Pages:**
+  - UI forms for email and password input.
+  - Google Sign-In button included (initially UI only).
+  - Styled with Tailwind CSS for a clean and user-friendly interface.
+
+---
+
+### Day 3: Authentication & Deployment
+
+- **Google Authentication with NextAuth:**
+  - Installed `next-auth` package.
+  - Created API route at `/app/api/auth/[...nextauth]/route.ts`.
+  - Configured Google OAuth provider using environment variables.
+  - Implemented session handling with JWT.
+  - Login/logout buttons updated to reflect authentication status.
+  - User info (name and avatar) displayed on Profile page.
+
+- **Vercel Deployment:**
+  - Connected GitHub repository to Vercel.
+  - Added required environment variables in Vercel dashboard:
+    ```bash
+    NEXTAUTH_SECRET=your-secret
+    GOOGLE_CLIENT_ID=your-google-client-id
+    GOOGLE_CLIENT_SECRET=your-google-client-secret
+    NEXTAUTH_URL=https://your-vercel-url.vercel.app
+    ```
+  - Fixed build issues related to route exports and image sizing.
+  - Successfully deployed the app with full functionality.
+
+---
+
+## 🔧 Component Structure
+
