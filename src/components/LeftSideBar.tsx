@@ -11,7 +11,7 @@ export default function LeftSidebar() {
       lg:w-24 lg:hover:w-72
       overflow-hidden"
         >
-            <ul className="p-4 mt-52 space-y-6 sm:p-6 sm:space-y-10 lg:p-8 lg:space-y-20">
+            <ul className="p-4 mt-28 space-y-6 sm:p-6 sm:space-y-10 lg:p-8 lg:space-y-20">
                 <li>
                     <Link
                         href="/pizza"

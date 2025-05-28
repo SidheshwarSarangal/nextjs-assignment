@@ -122,6 +122,7 @@ export default function HomeBigCards() {
                                 <Image
                                     src={slide.img}
                                     alt="Promo"
+                                    fill
                                     className="absolute hidden sm:block object-left 2xl:right-[-29%] top-0 h-full object-cover"
                                 />
                             </div>
@@ -146,6 +147,7 @@ export default function HomeBigCards() {
                         <Image
                             src={slides[currentSlide].img2}
                             alt="Promo"
+                            fill
                             className="w-80 group-hover:animate-shake h-80 mx-auto object-contain mb-4"
                         />
 

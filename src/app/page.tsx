@@ -44,7 +44,7 @@ export default function Home() {
 
       {/* Left Side */}
       <div className=" w-full lg:w-2/3 xl:w-1/2 h-full p-8">
-        <div className="mx-auto w-full sm:w-5/6 md:w-2/3">
+        <div className="mx-auto w-full pb-16 sm:w-5/6 md:w-2/3">
           <div className="w-full flex items-center mt-28 justify-center text-5xl md:text-7xl mx-auto align-middle font-[var(--font-merriweather)]">Say Cheese!!!!</div>
           <div className="w-full flex items-center mt-6 justify-center text-xl md:text-3xl text-gray-700">Hello! Wanna try our delicious pizzas?</div>
 
@@ -165,7 +165,7 @@ export default function Home() {
       </div>
 
       {/* Right Side (Image Slider) */}
-      <div className="relative h-full overflow-hidden lg:block hidden lg:w-1/3 xl:w-1/2 w-0">
+      <div className="fixed right-0 top-0 h-full overflow-hidden lg:w-1/3 xl:w-1/2 w-0">
         {images.map((src, index) => (
           <Image
             key={index}
