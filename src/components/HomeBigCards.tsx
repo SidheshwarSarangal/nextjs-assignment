@@ -100,7 +100,7 @@ export default function HomeBigCards() {
                     >
                         <div className="p-1 w-full h-full rounded-xl shadow-xl overflow-hidden relative bg-neutral-800 text-white flex">
 
-                            
+
 
                             {/* Text & Button Content Overlay */}
                             <div className="absolute w-3/4 sm:w-1/2 left-6 top-6 z-9">
@@ -118,12 +118,12 @@ export default function HomeBigCards() {
                             </div>
 
                             {/* Right Side Image */}
-                            <div className="ml-auto w-3/5 sm:w-1/2">
+                            <div className="ml-auto h-full w-3/5 sm:w-1/2">
                                 <Image
                                     src={slide.img}
                                     alt="Promo"
                                     fill
-                                    className="absolute hidden sm:block object-left 2xl:right-[-29%] top-0 h-full object-cover"
+                                    className="absolute hidden sm:block ml-52 xl:ml-40 right-[-25%] top-0 h-full object-left"
                                 />
                             </div>
                         </div>
@@ -134,7 +134,7 @@ export default function HomeBigCards() {
             </div>
 
             {/* Right: Text Content - 2/5 for md and above, full width below md */}
-            <div className="group w-full hidden lg:block lg:w-2/5  flex-col mx-auto justify-center p-6 -mt-14 rounded-xl relative overflow-hidden ">
+            <div className="group w-full hidden lg:flex lg:w-2/5  flex-col mx-auto justify-center p-6  rounded-xl relative overflow-hidden ">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentSlide}
@@ -144,16 +144,18 @@ export default function HomeBigCards() {
                         transition={{ duration: 1, ease: 'easeInOut' }}
                         style={{ position: 'relative' }}
                     >
-                        <Image
+                        {/*  
+                            <Image
                             src={slides[currentSlide].img2}
                             alt="Promo"
                             fill
-                            className="w-80 group-hover:animate-shake h-80 mx-auto object-contain mb-4"
+                            className="w-80   group-hover:animate-shake object-fill"
                         />
+                        */}
 
                         {/* Comic Font Text */}
                         <p
-                            className="text-xl mx-auto justify-center align-middle font-semibold -mt-16 text-gray-700"
+                            className="text-xl mx-auto group-hover:animate-shake justify-center align-middle font-semibold -mt-8 text-gray-700"
                         >
                             {slides[currentSlide].text2}
                         </p>
