@@ -176,5 +176,5 @@ This project was an excellent learning experience in full-stack development usin
 
 ---
 
-> Overall, this project helped sharpen my skills across frontend, backend, deployment, and authentication — all within a modern, full-stack React/Next.js ecosystem.
+> Overall, this project helped sharpen my skills across frontend, backend, deployment, and authentication — all within a modern, full-stack React/Next.js ecosystem. This project was an assignment for an internship.
 
