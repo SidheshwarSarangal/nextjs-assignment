@@ -6,7 +6,7 @@ A modern pizza ordering web application built with **Next.js (App Router)**, **T
 
 ## 🚀 Live Demo
 
-Click the link below to view the live deployed app:
+Click the link below to view the live deployed app: You need to just use your google id in order to do the signin using option sign in with google.
 
 👉 [Next.js Pizza App Live](https://nextjs-pizza-app-five.vercel.app/)
 
